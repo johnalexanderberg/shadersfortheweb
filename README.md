@@ -6,8 +6,7 @@
 
 ---
 
-1 - [Slow Breaths](https://johnalexanderberg.github.io/shadersfortheweb/01-slowbreaths/index.html).
+##[Slow Breaths](https://johnalexanderberg.github.io/shadersfortheweb/01-slowbreaths/index.html).
 ![](slowbreaths.png)
-2 - [Kaleidoscope](https://johnalexanderberg.github.io/shadersfortheweb/02-kaleidoscope/index.html).
-
+##[Kaleidoscope](https://johnalexanderberg.github.io/shadersfortheweb/02-kaleidoscope/index.html).
 ---
