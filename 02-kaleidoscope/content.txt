@@ -1,0 +1,26 @@
+Links:
+https://kaleidoscope.superhi.com/
+http://collletttivo.it/
+https://github.com/patriciogonzalezvivo/glslCanvas
+https://www.figma.com/file/b074CPulQUw3AXHgbA2HT5/Kaleidoscope
+
+Photos:
+https://unsplash.com/photos/5Au2MtfZWJ8
+https://unsplash.com/photos/x4YEK7o8L0c
+https://unsplash.com/photos/b9qi_lHCD-Y
+
+Pi:
+3.141592653589
+
+Colors:
+Text/Background: #11111a
+Panel: #ffffff
+Links: #0044ff
+
+Copy:
+Lauren Cate Smith
+Photographer of kaleidoscopic images
+Instagram
+Unsplash
+500px
+
