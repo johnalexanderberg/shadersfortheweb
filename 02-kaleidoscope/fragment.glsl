@@ -3,7 +3,7 @@ precision highp float;
 #endif
 
 
-#define SEGMENTS 6.0
+#define SEGMENTS 9.0
 #define PI 3.141592653589
 
 uniform float u_time;
@@ -34,7 +34,7 @@ void main(void)
 
     // get a segment
     angle /= PI * 2.0;
-    angle *= SEGMENTS;
+    angle *= SEGMENTS*mix(0.8, 1.5, mouse.x);
 
     // repeat segment
     if(mod(angle, 2.0) >= 1.0)
@@ -45,7 +45,7 @@ void main(void)
     else
     {
         angle = 1.0 -fract(angle);
-        angle += u_time*0.01;
+        angle += u_time*0.2;
     }
 
     angle += u_time * 0.01;
@@ -53,7 +53,7 @@ void main(void)
 
 
     // unsquash segment
-    angle /= SEGMENTS;
+    angle /= SEGMENTS*mix(0.5, 2.0, mouse.x);
     angle *= PI * 2.0;
 
 
