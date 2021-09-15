@@ -5,19 +5,10 @@ precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
-uniform vec3 u_spectrum;
 
-uniform sampler2D texture0;
-uniform sampler2D texture1;
-uniform sampler2D texture2;
-uniform sampler2D texture3;
-uniform sampler2D prevFrame;
-uniform sampler2D prevPass;
-
-varying vec3 v_normal;
 varying vec2 v_texcoord;
 
-#define NUM_OCTAVES 6
+#define NUM_OCTAVES 3
 
 // rand noise and fbm grabbed from
 // https://raw.githubusercontent.com/yiwenl/glsl-fbm/master/2d.glsl
@@ -50,19 +41,54 @@ float fbm(vec2 x) {
     return v;
 }
 
+mat2 rotation2d(float angle) {
+    float s = sin(angle);
+    float c = cos(angle);
+
+    return mat2(
+    c, -s,
+    s, c
+    );
+}
+
+// hsv 2 rgb conversion
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
 void main(void)
 {
     vec2 uv = v_texcoord;
 
-    vec4 color1 = vec4(1.0, 1.0, 1.0, 1.0);
-    vec4 color2 = vec4(0.0, 0.0, 0.0, 1.0);
+    float hue = u_time*0.005;
 
-    float f = fbm(uv)*(u_mouse.y)*-0.001;
+    vec3 hsv1 = vec3(hue, 0.9, 0.8);
+    vec3 hsv2 = vec3(hue-0.1, 0.6, 0.7);
+    vec3 hsv3 = vec3(hue, 1.0, 1.0);
+
+    vec3 rgb1 = hsv2rgb(hsv1);
+    vec3 rgb2 = hsv2rgb(hsv2);
+
+
+    vec4 color1 = vec4(rgb1, 1.0);
+    vec4 color2 = vec4(rgb2, 1.0);
+
+    float grain = mix(-0.01, 0.09, rand(uv));
+
+    //make movement for fbm
+    vec2 movement = vec2(u_time * 0.002, u_time * -0.003);
+    movement *= rotation2d(u_time*0.001);
+
+    float f = fbm(uv + movement);
     f *= 10.0;
-    f += u_time*0.1*u_mouse.x*0.2/1000.0;
+    f += grain;
+    f += u_time* 0.1;
     f = fract(f);
 
-    float mixer = step(0.5, f);
+    float mixer = smoothstep(0.0, 0.05, f) - smoothstep(0.1, 0.3, f);
 
     vec4 color = mix(color1, color2, mixer);
 

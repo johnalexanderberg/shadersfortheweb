@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'Sprat';
+    src: url("sprat.woff2");
+}
+
+body {
+    font-family: Sprat;
+    font-size: 40px;
+    line-height: 1.25;
+    font-variation-settings: "wght" 100, "wdth" 10;
+
+    background-color: #11111a;
+    color: white;
+}
+
+
 div.canvas-holder {
     position: fixed;
     top: 0;
@@ -11,4 +27,35 @@ div.canvas-holder canvas {
     top: 50%;
     left: 50%;
     transform: translate(calc(-50%), -50%);
+}
+
+main {
+    position: relative;
+    flex: 1;
+    border: 1px solid white;
+    margin: 40px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 1;
+    padding: 32px;
+}
+
+footer {
+    padding: 32px;
+    border-top: 1px solid white;
+    flex-direction: column;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: font-variation-settings 0.5s;
+}
+
+a:hover {
+    font-variation-settings: "wght" 140, "wdth" 10;
 }
