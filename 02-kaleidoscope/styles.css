@@ -12,37 +12,99 @@
 
 body {
     font-family: Mazius Review;
-    font-size: 24px;
+    font-size: 16px;
     line-height: 1.5;
-
-    background-color: #11111a;
     color: #11111a;
 }
 
+@media screen and (min-width: 740px) {
+    body {
+        font-size: 24px;
+        line-height: 1.5;
+    }
+}
+
+::selection {
+    color: #11111a;;
+}
+
 div.info {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 48px;
     right: 48px;
-    width: 320px;
-    height: calc(100vh - 96px);
+    width: calc(100vw - 48px);
     background-color: #ffffff;
-    padding: 32px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding-bottom: 12px;
 }
 
+@media screen and (min-width: 740px) {
+    div.info {
+        position: fixed;
+        top: 48px;
+        right: 48px;
+        width: 320px;
+        height: calc(100vh - 96px);
+        background-color: #ffffff;
+        padding: 32px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+
 h1 {
-    font-size: 56px;
+    position: relative;
+    padding-left: 18px;
+    top: -8px;
+    grid-area: A;
+    font-size: 36px;
     font-style: italic;
-    line-height: 1.1;
+}
+
+@media screen and (min-width: 740px) {
+    h1 {
+        padding-left: 0;
+        font-size: 56px;
+        font-style: italic;
+        line-height: 1.1;
+    }
+}
+
+p {
+    position: relative;
+    top: -20px;
+    padding-left: 18px;
+    grid-area: B;
+    display: inline;
+    column-span: all;
+}
+
+@media screen and (min-width: 740px) {
+    p {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 nav {
-    display: flex;
-    flex-direction: column;
+    padding-right: 24px;
+    display: inline;
+    align-self: end;
 }
+
+@media screen and (min-width: 740px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        padding-right: 0;
+    }
+}
+
 
 nav a {
     color: #0044ff;
@@ -58,7 +120,7 @@ div.canvas-holder {
 }
 
 div.canvas-holder canvas {
-position: fixed;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(calc(-50% - 100px), -50%);

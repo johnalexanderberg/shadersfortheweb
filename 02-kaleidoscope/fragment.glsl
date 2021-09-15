@@ -3,7 +3,7 @@ precision highp float;
 #endif
 
 
-#define SEGMENTS 9.0
+#define SEGMENTS 3.0
 #define PI 3.141592653589
 
 uniform float u_time;
@@ -40,16 +40,26 @@ void main(void)
     if(mod(angle, 2.0) >= 1.0)
     {
         angle = fract(angle);
-        angle += u_time*0.05;
+        angle += u_time*0.03;
     }
     else
     {
         angle = 1.0 -fract(angle);
-        angle += u_time*0.2;
+        angle += u_time*0.01;
+    }
+
+    if(mod(radius, 0.2) >= 0.1)
+    {
+        angle = fract(angle);
+
+    }
+    else
+    {
+        angle = 1.0 -fract(angle);
     }
 
 
-    angle += u_time * 0.01;
+    angle += u_time * 0.001;
     angle += mouse.y;
 
 

@@ -2,7 +2,7 @@ const canvas = document.querySelector('div.canvas-holder canvas')
 const sandbox = new GlslCanvas(canvas)
 
 const images = [
-    'artwork1.jpeg',
+    'artwork1.jpg',
     'artwork2.jpeg',
     'artwork3.jpeg',
     'artwork4.jpeg',
