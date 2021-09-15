@@ -17,7 +17,7 @@ uniform sampler2D prevPass;
 varying vec3 v_normal;
 varying vec2 v_texcoord;
 
-#define NUM_OCTAVES 5
+#define NUM_OCTAVES 6
 
 // rand noise and fbm grabbed from
 // https://raw.githubusercontent.com/yiwenl/glsl-fbm/master/2d.glsl
@@ -57,9 +57,9 @@ void main(void)
     vec4 color1 = vec4(1.0, 1.0, 1.0, 1.0);
     vec4 color2 = vec4(0.0, 0.0, 0.0, 1.0);
 
-    float f = fbm(uv);
+    float f = fbm(uv)*(u_mouse.y*0.5-0.5)*-0.001;
     f *= 10.0;
-    f += u_time*0.1;
+    f += u_time*0.1*u_mouse.x*2.0/1000.0;
     f = fract(f);
 
     float mixer = step(0.5, f);
