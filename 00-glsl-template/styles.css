@@ -1,0 +1,14 @@
+div.canvas-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+div.canvas-holder canvas {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50%), -50%);
+}
