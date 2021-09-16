@@ -5,6 +5,7 @@ precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
+uniform vec2 u_touch;
 
 varying vec2 v_texcoord;
 
@@ -65,11 +66,12 @@ void main(void)
 
     //distance from mouse to point
     vec2 mouse = u_mouse / u_resolution;
-    float dist = distance(uv, mouse);
+    vec2 touch = u_touch / u_resolution;
+    float dist = distance(uv, mouse+touch);
     float strenght = smoothstep(0.6, 0.0, dist);
     float strenght2 = smoothstep(0.0, 0.4, dist);
 
-    float hue = u_time*0.005 +  strenght/12.0;
+    float hue = u_time*0.005 +  strenght/24.0;
 
     vec3 hsv1 = vec3(hue, 0.9, 0.8);
     vec3 hsv2 = vec3(hue-0.1+strenght/8.0, 0.6, 0.7-strenght/10.0);
@@ -94,7 +96,8 @@ void main(void)
     f += u_time* 0.1;
     f = fract(f);
 
-    float mixer = smoothstep(0.0, 0.05, f) - smoothstep(0.1, 0.3, f);
+    float gap = mix(0.5, 0.01, strenght);
+    float mixer = smoothstep(0.0, gap, f) - smoothstep(0.1 - gap, 0.3, f);
 
     vec4 color = mix(color1, color2, mixer);
 

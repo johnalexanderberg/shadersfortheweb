@@ -28,3 +28,10 @@ const sandbox = new GlslCanvas(canvas)
 fetch('fragment.glsl')
     .then(response => response.text())
    .then(frag => sandbox.load(frag))
+
+document.ontouchmove = ({touches}) => {
+    const touch = [touches[0].clientX, touches[0].clientY]
+    console.log(touch)
+    sandbox.setUniform('u_touch', touch);
+
+};
