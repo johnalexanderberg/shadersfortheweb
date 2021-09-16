@@ -66,8 +66,7 @@ void main(void)
 
     //distance from mouse to point
     vec2 mouse = u_mouse / u_resolution;
-    vec2 touch = u_touch / u_resolution;
-    float dist = distance(uv, u_touch);
+    float dist = distance(uv, mouse);
     float strenght = smoothstep(0.6, 0.0, dist);
     float strenght2 = smoothstep(0.0, 0.4, dist);
 
