@@ -1,6 +1,8 @@
 //html canvas config
-const canvas = document.querySelector('div.canvas-holder canvas')
+const canvas = document.querySelector('canvas')
+document.body.appendChild(canvas)
 
+//size
 const calcSize = function() {
     let ww = window.innerWidth
     let wh = window.innerHeight
@@ -20,15 +22,9 @@ window.addEventListener("resize", function (){
     calcSize();
 })
 
-//glsl canvas config
+//set up glsl canvas
 const sandbox = new GlslCanvas(canvas)
 
 fetch('fragment.glsl')
     .then(response => response.text())
-   .then(text => sandbox.load(text))
-
-//On click
-function handleClick() {
-}
-
-window.addEventListener('click', handleClick)
+   .then(frag => sandbox.load(frag))

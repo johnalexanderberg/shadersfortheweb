@@ -3,40 +3,39 @@
     src: url("sprat.woff2");
 }
 
+html, body {
+    min-height: 100vh;
+}
+
 body {
     font-family: Sprat;
-    font-size: 40px;
+    font-size: 24px;
     line-height: 1.25;
     font-variation-settings: "wght" 100, "wdth" 10;
+    margin: 40px auto 40px auto;
 
     background-color: #11111a;
     color: white;
 }
 
-
-div.canvas-holder {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-div.canvas-holder canvas {
+canvas {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(calc(-50%), -50%);
+    width: 100vmax;
+    height: 100vmax;
+    pointer-events: none;
+    z-index: -1;
 }
 
 main {
-    position: relative;
-    flex: 1;
-    border: 1px solid white;
-    margin: 40px;
-
     display: flex;
+    flex: 1;
     flex-direction: column;
+    border: 1px solid white;
+
+    margin: 40px;
 }
 
 header {
@@ -53,9 +52,20 @@ footer {
 a {
     color: white;
     text-decoration: none;
-    transition: font-variation-settings 0.5s;
+    transition: font-variation-settings 0.2s;
+    margin-right: 0.2em;
 }
 
 a:hover {
     font-variation-settings: "wght" 140, "wdth" 10;
+}
+
+a:before {
+    display: inline-block;
+    content: "";
+    background-color: white;
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 100%;
+    margin-right: 0.1em;
 }

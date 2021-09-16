@@ -8,7 +8,7 @@ uniform vec2 u_mouse;
 
 varying vec2 v_texcoord;
 
-#define NUM_OCTAVES 3
+#define NUM_OCTAVES 6
 
 // rand noise and fbm grabbed from
 // https://raw.githubusercontent.com/yiwenl/glsl-fbm/master/2d.glsl
@@ -63,10 +63,16 @@ void main(void)
 {
     vec2 uv = v_texcoord;
 
-    float hue = u_time*0.005;
+    //distance from mouse to point
+    vec2 mouse = u_mouse / u_resolution;
+    float dist = distance(uv, mouse);
+    float strenght = smoothstep(0.6, 0.0, dist);
+    float strenght2 = smoothstep(0.0, 0.4, dist);
+
+    float hue = u_time*0.005 +  strenght/12.0;
 
     vec3 hsv1 = vec3(hue, 0.9, 0.8);
-    vec3 hsv2 = vec3(hue-0.1, 0.6, 0.7);
+    vec3 hsv2 = vec3(hue-0.1+strenght/8.0, 0.6, 0.7-strenght/10.0);
     vec3 hsv3 = vec3(hue, 1.0, 1.0);
 
     vec3 rgb1 = hsv2rgb(hsv1);
@@ -76,7 +82,7 @@ void main(void)
     vec4 color1 = vec4(rgb1, 1.0);
     vec4 color2 = vec4(rgb2, 1.0);
 
-    float grain = mix(-0.01, 0.09, rand(uv));
+    float grain = mix(-0.001, 0.5, rand(uv)*strenght2);
 
     //make movement for fbm
     vec2 movement = vec2(u_time * 0.002, u_time * -0.003);
