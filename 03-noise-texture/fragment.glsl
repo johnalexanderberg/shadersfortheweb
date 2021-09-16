@@ -67,13 +67,13 @@ void main(void)
     //distance from mouse to point
     vec2 mouse = u_mouse / u_resolution;
     float dist = distance(uv, mouse);
-    float strenght = smoothstep(0.6, 0.0, dist);
-    float strenght2 = smoothstep(0.0, 0.4, dist);
+    float strength = smoothstep(0.9, 0.0, dist);
+    float strength2 = smoothstep(0.3, 0.0, dist);
 
-    float hue = u_time*0.005 +  strenght/24.0;
+    float hue = 0.7 + u_time*0.005 +  strength/30.0;
 
-    vec3 hsv1 = vec3(hue, 0.9, 0.8);
-    vec3 hsv2 = vec3(hue-0.1+strenght/8.0, 0.6, 0.7-strenght/10.0);
+    vec3 hsv1 = vec3(hue, 0.9, 0.8-strength/20.0);
+    vec3 hsv2 = vec3(hue+strength2/10.0+0.04, 0.6, 0.7-strength2/8.0);
     vec3 hsv3 = vec3(hue, 1.0, 1.0);
 
     vec3 rgb1 = hsv2rgb(hsv1);
@@ -83,7 +83,7 @@ void main(void)
     vec4 color1 = vec4(rgb1, 1.0);
     vec4 color2 = vec4(rgb2, 1.0);
 
-    float grain = mix(-0.001, 0.5, rand(uv)*strenght2);
+    float grain = mix(-0.001, 0.4, rand(uv+u_time)*strength2);
 
     //make movement for fbm
     vec2 movement = vec2(u_time * 0.002, u_time * -0.003);
@@ -95,7 +95,7 @@ void main(void)
     f += u_time* 0.1;
     f = fract(f);
 
-    float gap = mix(0.5, 0.01, strenght);
+    float gap = mix(0.5, 0.05, strength);
     float mixer = smoothstep(0.0, gap, f) - smoothstep(0.1 - gap, 0.3, f);
 
     vec4 color = mix(color1, color2, mixer);
