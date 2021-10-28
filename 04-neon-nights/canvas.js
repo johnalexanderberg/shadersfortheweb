@@ -1,10 +1,4 @@
-//html canvas config
-
-//document.body.appendChild(canvas)
-
 const divs = document.querySelectorAll('div.shader')
-
-console.log(divs);
 
 divs.forEach(div => {
 
