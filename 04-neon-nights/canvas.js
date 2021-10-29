@@ -60,7 +60,6 @@ divs.forEach(div => {
         });
 
         window.addEventListener('mousemove', function() {
-            console.log('hello')
             aimStrength += 0.1;
         })
 
@@ -86,15 +85,5 @@ divs.forEach(div => {
     })
 
 })
-
-//set up glsl canvas
-
-
-document.ontouchmove = ({touches}) => {
-    const touch = [touches[0].clientX, touches[0].clientY]
-    console.log(touch)
-
-
-};
 
 
