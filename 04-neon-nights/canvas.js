@@ -59,14 +59,6 @@ divs.forEach(div => {
             sizer();
         });
 
-        window.addEventListener('mousemove', function() {
-            aimStrength += 0.1;
-        })
-
-        div.addEventListener('mouseover', function() {
-            aimStrength = 0;
-
-        })
 
         const animate = function () {
 
