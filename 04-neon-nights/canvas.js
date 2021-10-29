@@ -59,11 +59,20 @@ divs.forEach(div => {
             sizer();
         });
 
+        window.addEventListener('mousemove', function() {
+            console.log('hello')
+            aimStrength += 0.1;
+        })
+
+        div.addEventListener('mouseover', function() {
+            aimStrength = 0;
+
+        })
+
         const animate = function () {
 
             const diff = aimStrength - currentStrength;
             currentStrength += diff * 0.03;
-            console.log(currentStrength)
 
             sandbox.setUniform('u_strength', currentStrength)
 
@@ -87,3 +96,5 @@ document.ontouchmove = ({touches}) => {
 
 
 };
+
+
