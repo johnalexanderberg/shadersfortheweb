@@ -31,13 +31,11 @@ mat2 rotation2d(float angle) {
 
 vec4 sampleColor(vec2 uv){
 
-    vec4 color = texture2D(u_image, uv);
-
     if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0){
-        color = vec4(0.0);
+        return vec4(0.0);
     }
 
-    return color;
+    return texture2D(u_image, uv);
 }
 
 void main(void)
@@ -47,13 +45,13 @@ void main(void)
 
     float speed = u_time/2.0*u_seed;
 
-    vec2 distortion = 0.01 * u_strength  * u_seed * sin(u_time +uv.x *u_resolution.x/32.0*sin(u_time/25.0)+sin(u_time/9.0)*12.0 + uv.y * 1.5) * vec2(
+    vec2 distortion = 0.01 * pow(u_strength, 0.8)  * u_seed * sin(u_time +uv.x *u_resolution.x/32.0*sin(u_time/25.0)+sin(u_time/9.0)*12.0 + uv.y * 1.5) * vec2(
     sin(speed+uv.x * 8.0),
     sin(u_time +uv.x *8.0 + uv.y * 8.0)
     );
 
 
-    vec2 distortion2 = 0.01 * u_strength * u_seed * vec2(
+    vec2 distortion2 = 0.01 * pow(u_strength, 0.8) * u_seed * vec2(
     sin(speed/3.0+uv.x * 1.0 + uv.y * 8.0),
     sin(u_time +uv.x *3.0 + uv.y * 1.5)
     );

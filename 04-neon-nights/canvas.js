@@ -59,6 +59,14 @@ divs.forEach(div => {
             sizer();
         });
 
+        div.addEventListener('mouseout', function (){
+            aimStrength = 0;
+        });
+
+        div.addEventListener('mouseenter', function (){
+            aimStrength = 3;
+        });
+
 
         const animate = function () {
 
