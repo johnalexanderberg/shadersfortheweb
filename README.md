@@ -12,6 +12,4 @@
 
 ##[Acid Scroll](https://johnalexanderberg.github.io/shadersfortheweb/04-neon-nights/index.html).<img width="651" alt="acidscroll" src="https://user-images.githubusercontent.com/72527002/147860929-fbd4f73a-824a-4027-aee4-9d695f5285ee.png">
 
-##[Slow Breaths](https://johnalexanderberg.github.io/shadersfortheweb/01-slowbreaths/index.html).
-![](slowbreaths.png)
 ---
